@@ -47,6 +47,7 @@ $("#inputForm").on("click", function(event) {
        	
        	var result =response.data;
        	console.log(response);
+       	console.log("hello");
 
 
        })
