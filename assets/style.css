@@ -1,8 +1,9 @@
 body {
-	padding-top: 70px; 
+  background-image: url ("")
+	/*seet font etc here*/
 }
 
-.footer .container{
+.container-fluid.footer-container {
   display: block;
   bottom: 0;
   clear: both;
@@ -12,9 +13,9 @@ body {
   align-self: flex-end;
   bottom: 0;
   left: 0;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  margin: 30px;
+  /*padding-top: 30px;*/
+  /*padding-bottom: 30px;*/
+  /*margin: 30px;*/
   background-color: lightgrey;
 
 }
