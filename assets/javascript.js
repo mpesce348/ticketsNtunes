@@ -29,13 +29,24 @@ $("#inputForm").on("click", function(event) {
         "artist": artistName
      
         });
+
+     //set up function to take snapshot of 
+     //database value on any value change
+
+     database.ref().on("value", function(snapshot) {
+     	var snapshotVal = snapshot.val();
+     	console.log(snapshotVal);
+     	var valKeys = Object.keys(snapshotVal);
+     	console.log(valKeys);
+     })
             
-     //set up api key
-     //perform call to get info from api
+     // set up api key
+     // perform call to get info from api
      
      artist = $(this).attr("data-name");
      
-     var queryURL = 
+     var queryURL = "https://musicbrainz.org/ws/2/" 
+     + artist + "<MBID>?inc=<INC>";
 
      $.ajax({
      
@@ -45,9 +56,11 @@ $("#inputForm").on("click", function(event) {
        //stops ajax call and retreives response
        .done(function(response){
        	
+       	//sets variable to data of the response
        	var result =response.data;
        	console.log(response);
        	console.log("hello");
+
 
 
        })
