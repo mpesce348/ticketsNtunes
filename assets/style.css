@@ -1,6 +1,14 @@
-body {
-  background-image: url ("")
-	/*seet font etc here*/
+body { 
+  background: url(./images/concert03.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+}
+
+.navbar.navbar-default {
+    background-color: transparent;
 }
 
 .container-fluid.footer-container {
@@ -16,7 +24,7 @@ body {
   /*padding-top: 30px;*/
   /*padding-bottom: 30px;*/
   /*margin: 30px;*/
-  background-color: lightgrey;
+  background-color: white;
 
 }
 
