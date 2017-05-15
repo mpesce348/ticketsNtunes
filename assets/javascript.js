@@ -1,23 +1,23 @@
 $(document).ready(function() {
     console.log("ready!");
-});
-//initalize firebase
-var config = {
+
+    var config = {
     apiKey: "AIzaSyAoNddLnmtR865blvGJc9ihvUNMwuFwrUE",
     authDomain: "ticketsntunes.firebaseapp.com",
     databaseURL: "https://ticketsntunes.firebaseio.com",
     projectId: "ticketsntunes",
     storageBucket: "ticketsntunes.appspot.com",
     messagingSenderId: "446162477724"
-};
-firebase.initializeApp(config);
+
+  };
+  firebase.initializeApp(config);
 
 
-//global variables
-var artist = "";
-var database = firebase.database();
-//starts on click function to enter earch term
-$("#inputForm").on("click", function(event) {
+  //global variables
+  var artist = "";
+  var database = firebase.database();
+  //starts on click function to enter earch term
+  $("#inputForm").on("click", function(event) {
      
      event.preventDefault();
      
@@ -34,10 +34,10 @@ $("#inputForm").on("click", function(event) {
      //database value on any value change
 
      database.ref().on("value", function(snapshot) {
-     	var snapshotVal = snapshot.val();
-     	console.log(snapshotVal);
-     	var valKeys = Object.keys(snapshotVal);
-     	console.log(valKeys);
+      var snapshotVal = snapshot.val();
+      console.log(snapshotVal);
+      var valKeys = Object.keys(snapshotVal);
+      console.log(valKeys);
      })
             
      // set up api key
@@ -52,17 +52,44 @@ $("#inputForm").on("click", function(event) {
      
         url: queryURL,
         method: "GET"
-            })
+      })
        //stops ajax call and retreives response
        .done(function(response){
-       	
-       	//sets variable to data of the response
-       	var result =response.data;
-       	console.log(response);
-       	console.log("hello");
+        
+          //sets variable to data of the response
+          var result =response.data;
+          console.log(response);
+          console.log("hello");
 
 
 
-       })
+       });
+    
 
- })
+      });
+
+//initalize firebase
+});
+
+
+
+  $("#submitCool").click(function(event) {
+
+          console.log("I'm working!");
+          event.preventDefault();
+          var wiki = $("#inputForm").val();
+
+          var queryURL = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=" + wiki + "&exintro=1&explaintext=1";
+
+    
+
+          $.ajax({
+            url: queryURL,
+            method: "GET",
+            cors: true,
+            dataType: "jsonp"
+          }).done(function(response) {
+            $(".container").text(JSON.stringify(response));
+          });
+
+        });
