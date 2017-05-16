@@ -99,11 +99,12 @@ $(document).ready(function() {
 
     database.ref().push({
 
-        "artist": artistName
+        "artist": artistName,
             //need to create an artist ID var to push 
             //artist object id to database
 
     });
+  
 
     //set up function to take snapshot of 
     //database value on any value change
@@ -147,6 +148,6 @@ $(document).ready(function() {
     console.log(getTopTracks);
     getWiki();
     console.log(getWiki);
-  })
+    })
+  });
 
-});
