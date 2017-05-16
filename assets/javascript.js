@@ -1,25 +1,25 @@
 $(document).ready(function() {
     console.log("ready!");
-});
-//initalize firebase
-var config = {
+
+  //initalize firebase
+  var config = {
     apiKey: "AIzaSyAoNddLnmtR865blvGJc9ihvUNMwuFwrUE",
     authDomain: "ticketsntunes.firebaseapp.com",
     databaseURL: "https://ticketsntunes.firebaseio.com",
     projectId: "ticketsntunes",
     storageBucket: "ticketsntunes.appspot.com",
     messagingSenderId: "446162477724"
-};
-firebase.initializeApp(config);
+  };
+  firebase.initializeApp(config);
 
 
-//global variables
-var artist = "";
-var artistID;
-var database = firebase.database();
+  //global variables
+  var artist = "";
+  var artistID;
+  var database = firebase.database();
 
-function getArtist() {
-    var name = ("#inputForm").val();
+  function getArtist() {
+    var name = $("#inputForm").val();
 
     var buildURL1 = "https://api.spotify.com/v1/search?q=" + name +
         "&type=artist";
@@ -38,9 +38,9 @@ function getArtist() {
             console.log(response.artists.items[0].name,
                 response.artists.items[0].id);
         })
-}
+  }
 
-function getTopTracks() {
+  function getTopTracks() {
 
 
     var buildURL2 = "https://api.spotify.com/v1/search?q=prince&type=artist";
@@ -61,13 +61,38 @@ function getTopTracks() {
 
 
         })
-}
+  }
+  function getWiki(){
+        console.log("I'm working!");
+          event.preventDefault();
+          var wiki = $("#inputForm").val();
 
-//starts on click function to enter earch term
-$("#inputForm").on("click", function(event) {
+         var queryURL = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=" + wiki + "&exintro=1&explaintext=1";
+
+   
+
+         $.ajax({
+            url: queryURL,
+            method: "GET",
+            cors: true,
+            dataType: "jsonp"
+          }).done(function(response) {
+            $(".container").text(JSON.stringify(response));
+
+        })
+
+  }
+
+
+
+
+
+
+  //starts on click function to enter earch term
+  $("#inputBtn").on("click", function(event) {
 
     event.preventDefault();
-
+    console.log("working click")
     //pushes search term into database
     artistName = $("#inputForm").val().trim();
 
@@ -95,13 +120,13 @@ $("#inputForm").on("click", function(event) {
 
     artist = $(this).attr("data-name");
 
-    var queryURL = "https://api.spotify.com/v1/search?q=prince&type=artist";
+    var queryURL2 = "https://api.spotify.com/v1/search?q=prince&type=artist";
 
 
 
     $.ajax({
 
-            url: queryURL,
+            url: queryURL2,
             method: "GET"
         })
         //stops ajax call and retreives response
@@ -117,5 +142,11 @@ $("#inputForm").on("click", function(event) {
         });
 
     getArtist();
+    console.log(getArtist);
     getTopTracks();
-})
+    console.log(getTopTracks);
+    getWiki();
+    console.log(getWiki);
+  })
+
+});
