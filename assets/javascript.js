@@ -120,7 +120,7 @@ $(document).ready(function() {
 
     artist = $(this).attr("data-name");
 
-    var queryURL2 = "https://api.spotify.com/v1/search?q=prince&type=artist";
+    var queryURL2 = "https://api.spotify.com/v1/search?q=" + wiki + "&type=artist";
 
 
 
