@@ -14,7 +14,7 @@ $(document).ready(function() {
 
 
   //global variables
-  var artist = "";
+  var artist;
   var artistID;
   var database = firebase.database();
 
@@ -118,7 +118,7 @@ $(document).ready(function() {
     // set up api key
     // perform call to get info from api
 
-    artist = $(this).attr("data-name");
+    wiki = $(this).attr("data-name");
 
     var queryURL2 = "https://api.spotify.com/v1/search?q=" + wiki + "&type=artist";
 

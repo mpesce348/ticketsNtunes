@@ -119,3 +119,39 @@ audio{
         padding:7px 15x;
     }
 }
+
+#infoDisplayBox {
+  color: white;
+  /*border-style: solid;
+  border-width: 10px;*/
+  border-color: white;
+  background-color: transparent;
+  text-align: center;
+  padding: 40px;
+  font-size: 200%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 30px;
+  
+}
+
+#songDisplayBox {
+  color: white;
+  /*border-style: solid;
+  border-width: 10px;*/
+  border-color: white;
+  background-color: transparent;
+  text-align: center;
+ /* padding: 40px;*/
+  font-size: 300%;
+  padding-bottom: 250px;
+  padding-top: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.panel-heading {
+  background-color: transparent;
+  color: white;
+}
