@@ -1,3 +1,4 @@
+/*Jc Style*/
 body { 
   background: url(./images/concert03.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -7,8 +8,11 @@ body {
   color: white;
 }
 
-.navbar.navbar-default {
+.nav.navbar.navbar-default {
     background-color: transparent;
+    min-height: 80px;
+    font-size: 20px;
+    color: black;
 }
 
 .container-fluid.footer-container {
@@ -32,4 +36,86 @@ body {
 	z-index: 100;
 	width: 100%;
 	text-align: center;
+}
+.navbar-brand {
+  font-size: 30px;
+}
+
+/*Parita Style*/
+body{
+    background: url(https://images6.alphacoders.com/338/338525.jpg);
+    background-size:100%;
+}
+html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+}
+.intro .inner{
+    display:table-cell;
+    vertical-align: middle;
+    width:100%;
+    max-width: none;
+
+}
+.content{
+    max-width: 500px;
+    margin:0 auto;
+    text-align: center;
+    color:white;
+    font-size: 100%;
+    
+
+}
+
+.content h1{
+    font-family: 
+    color:white;
+    text-shadow: 5px 5px 10px blue;
+    font-size: 450%;
+}
+
+
+.intro{
+    height:100%;
+    width:100%;
+    margin:auto;
+    display:table;
+    top:0;
+    background-size: cover;
+}
+.btn{
+    border-radius: 9px;
+    font-family:;
+    color:white;
+    font-size: 150%;
+    padding:10px 20px;
+    border:solid #036A81 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+
+
+
+}
+.btn:hover{
+    color:#fff;
+    border: solid#fff 3px;
+}
+
+
+audio{
+    display: none;
+
+}
+
+
+@media screen and(max-width:768px){
+    .content h1{
+        font-size: 250%;
+    }
+    .btn{
+        font-size: 110%;
+        padding:7px 15x;
+    }
 }
