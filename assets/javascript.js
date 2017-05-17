@@ -19,49 +19,74 @@ $(document).ready(function() {
   var database = firebase.database();
 
   function getArtist() {
+    event.preventDefault();
     var name = $("#inputForm").val();
 
-    var buildURL1 = "https://api.spotify.com/v1/search?q=" + name +
-        "&type=artist";
+    var buildURL1 = "https://api.spotify.com/v1/search?q&type=artist";
 
 
     $.ajax({
-
-
             url: buildURL1,
-            method: "GET"
-        })
+            method: "GET",
+            })
         //stops ajax call and retreives response
         .done(function(response) {
 
             //sets variable to data of the response
+            console.log(response);
             console.log(response.artists.items[0].name,
                 response.artists.items[0].id);
         })
   }
 
   function getTopTracks() {
-
-
+    event.preventDefault();
+    var name = $("#inputForm").val();
     var buildURL2 = "https://api.spotify.com/v1/search?q=prince&type=artist";
 
 
 
     $.ajax({
-
             url: buildURL2,
-            method: "GET"
+            method: "GET",
+          })
+        //stops ajax call and retreives response
+        .done(function(response) {
+
+            //sets variable to data of the response
+            console.log(response);
+            console.log(response.artists.items[0].name,
+                response.artists.items[0].id);
+            // $("#trackList").text(JSON.stringify(response));
+
+
+        })
+  }
+function getPic() {
+    event.preventDefault();
+    var name = $("#inputForm").val();
+    var buildURL3 = "https://api.spotify.com/v1/search?q=prince&type=artist";
+
+
+
+    $.ajax({
+            url: buildURL3,
+            method: "GET",
+            
+            
         })
         //stops ajax call and retreives response
         .done(function(response) {
 
             //sets variable to data of the response
-            console.log(response.artists.items[0].name,
-                response.artists.items[0].id);
+            console.log(response);
+            console.log(response.artists.items[0].images[0].url);
+            var artistImgURL = (response.artists.items[0].images[0].url);
 
-
+            $("#imageDiv1").append(artistImg);
         })
   }
+
   function getWiki(){
         console.log("I'm working!");
           event.preventDefault();
@@ -74,8 +99,8 @@ $(document).ready(function() {
          $.ajax({
             url: queryURL,
             method: "GET",
-            cors: true,
-            dataType: "jsonp"
+            
+            
           }).done(function(response) {
             $(".container").text(JSON.stringify(response));
 
@@ -148,6 +173,6 @@ $(document).ready(function() {
     console.log(getTopTracks);
     getWiki();
     console.log(getWiki);
-    })
+    // getPic();
   });
-
+})

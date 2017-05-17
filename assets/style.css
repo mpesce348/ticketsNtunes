@@ -127,12 +127,17 @@ audio{
   border-color: white;
   background-color: transparent;
   text-align: center;
-  padding: 40px;
   font-size: 200%;
-  position: fixed;
-  bottom: 0;
+  /*position: fixed;
+  bottom: 0;*/
   width: 100%;
-  margin-bottom: 30px;
+/*  margin-bottom: 30px;*/
+  padding-left: 40px; 
+  padding-right: 40px
+  padding-bottom: 500px;
+  padding-top: 40px; 
+  bor
+
   
 }
 
@@ -153,5 +158,10 @@ audio{
 
 .panel-heading {
   background-color: transparent;
+  color: white;
+}
+
+#myCarousel {
+  border-color: white;
   color: white;
 }
