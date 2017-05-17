@@ -93,7 +93,7 @@ function getSpotify() {
           }).done(function(response) {
             console.log(response.query.pages[4429395].extract);
             // console.log(response.query.pages.4429395.extract);
-            $("#wikiData").text(JSON.stringify(response));
+            $("#wikiData").text(JSON.stringify(response.query.pages[4429395].extract));
 
         })
 
