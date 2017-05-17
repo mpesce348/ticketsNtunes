@@ -91,6 +91,8 @@ function getSpotify() {
             cors: true,
             dataType: "jsonp"
           }).done(function(response) {
+            console.log(response.query.pages[4429395].extract);
+            // console.log(response.query.pages.4429395.extract);
             $("#wikiData").text(JSON.stringify(response));
 
         })
