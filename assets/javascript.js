@@ -12,81 +12,70 @@ $(document).ready(function() {
   };
   firebase.initializeApp(config);
 
-
-  //global variables
-  var artist;
-  var artistID;
   var database = firebase.database();
 
-  function getArtist() {
+
+
+
+
+function getSpotify() {
     event.preventDefault();
-    var name = $("#inputForm").val();
-
-    var buildURL1 = "https://api.spotify.com/v1/search?q&type=artist";
-
-
+    // Storing the artist name
+    var artist = $("#inputForm").val().trim();
+    // Running an initial search to identify the artist's unique Spotify id
+    var queryURL = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist&limit=1";
     $.ajax({
-            url: buildURL1,
-            method: "GET",
-            })
-        //stops ajax call and retreives response
-        .done(function(response) {
+      url: queryURL,
+      method: "GET"
+    }).done(function(response) {
 
-            //sets variable to data of the response
-            console.log(response);
-            console.log(response.artists.items[0].name,
-                response.artists.items[0].id);
-        })
-  }
+      // Printing the entire object to console
+      console.log(response);
 
-  function getTopTracks() {
-    event.preventDefault();
-    var name = $("#inputForm").val();
-    var buildURL2 = "https://api.spotify.com/v1/search?q=prince&type=artist";
+      // Printing the artist id from the Spotify object to console
+      var artistID = response.artists.items[0].id;
+
+      var genre =response.artists.items[0].genres;
+
+      
+
+      // Building a SECOND URL to query another Spotify endpoint (this one for the tracks)
 
 
+      //RETRIEVES SPOTIFY INFO ON ALBUMS
+      var queryURLTracks = "https://api.spotify.com/v1/artists/"+ artistID +"/albums";
 
-    $.ajax({
-            url: buildURL2,
-            method: "GET",
-          })
-        //stops ajax call and retreives response
-        .done(function(response) {
+      // Running a second AJAX call to get the tracks associated with that Spotify id
+      $.ajax({
+        url: queryURLTracks,
+        method: "GET"
+      }).done(function(trackResponse) {
 
-            //sets variable to data of the response
-            console.log(response);
-            console.log(response.artists.items[0].name,
-                response.artists.items[0].id);
-            // $("#trackList").text(JSON.stringify(response));
+        // Logging the tracks
+        console.log(trackResponse);
 
+      //RETRIEVES INFO ON TOP TRACKS
 
-        })
-  }
-function getPic() {
-    event.preventDefault();
-    var name = $("#inputForm").val();
-    var buildURL3 = "https://api.spotify.com/v1/search?q=prince&type=artist";
+      var queryURLTracks1 = "https://api.spotify.com/v1/artists/"+ artistID +"/top-tracks?country=US";
 
+      // Running a second AJAX call to get the tracks associated with that Spotify id
+      $.ajax({
+        url: queryURLTracks1,
+        method: "GET"
+      }).done(function(trackResponse) {
 
+        // Logging the tracks
+        console.log(trackResponse);
 
-    $.ajax({
-            url: buildURL3,
-            method: "GET",
-            
-            
-        })
-        //stops ajax call and retreives response
-        .done(function(response) {
-
-            //sets variable to data of the response
-            console.log(response);
-            console.log(response.artists.items[0].images[0].url);
-            var artistImgURL = (response.artists.items[0].images[0].url);
-
-            $("#imageDiv1").append(artistImg);
-        })
-  }
-
+        // Appending the new player into the HTML
+        $("#trackData").append(genre);
+        
+      });
+    });
+  });
+};
+  
+//WIKI API
   function getWiki(){
         console.log("I'm working!");
           event.preventDefault();
@@ -99,10 +88,10 @@ function getPic() {
          $.ajax({
             url: queryURL,
             method: "GET",
-            
-            
+            cors: true,
+            dataType: "jsonp"
           }).done(function(response) {
-            $(".container").text(JSON.stringify(response));
+            $("#wikiData").text(JSON.stringify(response));
 
         })
 
@@ -116,10 +105,11 @@ function getPic() {
   //starts on click function to enter earch term
   $("#inputBtn").on("click", function(event) {
 
+
     event.preventDefault();
     console.log("working click")
     //pushes search term into database
-    artistName = $("#inputForm").val().trim();
+     var artistName = $("#inputForm").val().trim();
 
 
     database.ref().push({
@@ -129,7 +119,6 @@ function getPic() {
             //artist object id to database
 
     });
-  
 
     //set up function to take snapshot of 
     //database value on any value change
@@ -141,38 +130,12 @@ function getPic() {
         console.log(valKeys);
     })
 
-    // set up api key
-    // perform call to get info from api
 
-    wiki = $(this).attr("data-name");
+    // Running the getSpotify (passing in the artist as an argument)
+    getSpotify();
 
-    var queryURL2 = "https://api.spotify.com/v1/search?q=" + wiki + "&type=artist";
-
-
-
-    $.ajax({
-
-            url: queryURL2,
-            method: "GET"
-        })
-        //stops ajax call and retreives response
-        .done(function(response) {
-
-            //sets variable to data of the response
-            console.log(response.artists.items[0].name,
-                response.artists.items[0].id);
-
-
-
-
-        });
-
-    getArtist();
-    console.log(getArtist);
-    getTopTracks();
-    console.log(getTopTracks);
     getWiki();
     console.log(getWiki);
-    // getPic();
-  });
-})
+  })
+
+});
