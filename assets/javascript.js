@@ -43,7 +43,7 @@ function getSpotify() {
 
 
       //RETRIEVES SPOTIFY INFO ON ALBUMS
-      var queryURLTracks = "https://api.spotify.com/v1/artists/"+ artistID +"/albums";
+      var queryURLTracks = "https://api.spotify.com/v1/artists/"+ artistID +"/top-tracks?country=US";
 
       // Running a second AJAX call to get the tracks associated with that Spotify id
       $.ajax({
@@ -91,6 +91,8 @@ function getSpotify() {
             cors: true,
             dataType: "jsonp"
           }).done(function(response) {
+            console.log(response.query.pages[4429395].extract);
+            // console.log(response.query.pages.4429395.extract);
             $("#wikiData").text(JSON.stringify(response));
 
         })
@@ -108,6 +110,8 @@ function getSpotify() {
 
     event.preventDefault();
     console.log("working click")
+    $("#trackData").empty();
+    $("#wikiData").empty();
     //pushes search term into database
      var artistName = $("#inputForm").val().trim();
 
