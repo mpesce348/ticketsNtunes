@@ -65,10 +65,24 @@ function getSpotify() {
       }).done(function(trackResponse) {
 
         // Logging the tracks
-        console.log(trackResponse);
+        // console.log(trackResponse.tracks[0].name);
+        // console.log(trackResponse.tracks[1].name);
+        var trackPanel  = $('#trackData')
+        var trackTop3List = $('<ol>')
+        for(var i = 0; i < 10; i++){
+          var trackListItem = $('<li>')
+          var trackHeader = $('<h3>')
+          console.log(trackResponse.tracks[i].name);
+          trackHeader.text(trackResponse.tracks[i].name)
+          trackListItem.append(trackHeader) 
+          trackTop3List.append(trackListItem);
+        }
 
+        trackPanel.append(trackTop3List)
         // Appending the new player into the HTML
-        $("#trackData").append(genre);
+        // $("#topTrack1").text(JSON.stringify(trackResponse.tracks[0].name));
+        // $("#topTrack2").text(JSON.stringify(trackResponse.tracks[1].name));
+        // $("#topTrack3").text(JSON.stringify(trackResponse.tracks[2].name));
         
       });
     });
@@ -77,7 +91,7 @@ function getSpotify() {
   
 //WIKI API
   function getWiki(){
-        console.log("I'm working!");
+        
           event.preventDefault();
           var wiki = $("#inputForm").val();
 
@@ -91,7 +105,7 @@ function getSpotify() {
             cors: true,
             dataType: "jsonp"
           }).done(function(response) {
-            console.log(response.query.pages[4429395].extract);
+            // console.log(response.query.pages[4429395].extract);
             // console.log(response.query.pages.4429395.extract);
             $("#wikiData").text(JSON.stringify(response.query.pages[4429395].extract));
 
