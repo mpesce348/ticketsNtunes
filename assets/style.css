@@ -145,10 +145,7 @@ audio{
   text-align: center;
  /* padding: 40px;*/
   font-size: 175%;
-  padding-bottom: 250px;
-  padding-top: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
+ padding: 40px; 
 }
 
 .panel-heading {
@@ -164,4 +161,9 @@ audio{
 .footer {
   position: fixed;
   bottom: 0;
+}
+
+#trackdata {
+  border-height: 30%;
+  border-width: : 50%;
 }
