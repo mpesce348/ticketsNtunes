@@ -35,7 +35,10 @@ function getSpotify() {
       // Printing the artist id from the Spotify object to console
       var artistID = response.artists.items[0].id;
 
-      var genre =response.artists.items[0].genres;
+     $.ajax({
+      url: queryURL,
+      method: "GET"
+     })
 
       
 
@@ -43,7 +46,7 @@ function getSpotify() {
 
 
       //RETRIEVES SPOTIFY INFO ON ALBUMS
-      var queryURLTracks = "https://api.spotify.com/v1/artists/"+ artistID +"/albums";
+      var queryURLTracks = "https://api.spotify.com/v1/artists/"+ artistID +"/top-tracks?country=US";
 
       // Running a second AJAX call to get the tracks associated with that Spotify id
       $.ajax({
@@ -65,10 +68,24 @@ function getSpotify() {
       }).done(function(trackResponse) {
 
         // Logging the tracks
-        console.log(trackResponse);
+        // console.log(trackResponse.tracks[0].name);
+        // console.log(trackResponse.tracks[1].name);
+        var trackPanel  = $('#trackData')
+        var trackTop3List = $('<ol>')
+        for(var i = 0; i < 10; i++){
+          var trackListItem = $('<li>')
+          var trackHeader = $('<h3>')
+          console.log(trackResponse.tracks[i].name);
+          trackHeader.text(trackResponse.tracks[i].name)
+          trackListItem.append(trackHeader) 
+          trackTop3List.append(trackListItem);
+        }
 
+        trackPanel.append(trackTop3List)
         // Appending the new player into the HTML
-        $("#trackData").append(genre);
+        // $("#topTrack1").text(JSON.stringify(trackResponse.tracks[0].name));
+        // $("#topTrack2").text(JSON.stringify(trackResponse.tracks[1].name));
+        // $("#topTrack3").text(JSON.stringify(trackResponse.tracks[2].name));
         
       });
     });
@@ -77,13 +94,13 @@ function getSpotify() {
   
 //WIKI API
   function getWiki(){
-        console.log("I'm working!");
+        
           event.preventDefault();
           var wiki = $("#inputForm").val();
 
          var queryURL = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=" + wiki + "&exintro=1&explaintext=1";
 
-   
+        console.log();
 
          $.ajax({
             url: queryURL,
@@ -91,7 +108,9 @@ function getSpotify() {
             cors: true,
             dataType: "jsonp"
           }).done(function(response) {
-            $("#wikiData").text(JSON.stringify(response));
+            // console.log(response.query.pages[4429395].extract);
+            // console.log(response.query.pages.4429395.extract);
+            $("#wikiData").text(JSON.stringify(response.query.pages[4429395].extract));
 
         })
 
@@ -108,6 +127,8 @@ function getSpotify() {
 
     event.preventDefault();
     console.log("working click")
+    $("#trackData").empty();
+    $("#wikiData").empty();
     //pushes search term into database
      var artistName = $("#inputForm").val().trim();
 
@@ -135,7 +156,6 @@ function getSpotify() {
     getSpotify();
 
     getWiki();
-    console.log(getWiki);
   })
 
   
