@@ -44,6 +44,9 @@ $(document).ready(function() {
       method: "GET"
      })
 
+
+
+
             // Building a SECOND URL to query another Spotify endpoint (this one for the tracks)
             var queryURLTracks = "https://api.spotify.com/v1/artists/" + artistID + "/top-tracks?country=US";
 
@@ -107,9 +110,9 @@ $(document).ready(function() {
         // $("#topTrack3").text(JSON.stringify(trackResponse.tracks[2].name));
         
       });
-    });
-  });
-};
+   // });
+  //});
+//})
   
     //WIKI API
     function getWiki() {
@@ -182,6 +185,8 @@ $(document).ready(function() {
         var artistName = $("#inputForm").val().trim();
 
 
+
+
         database.ref().push({
 
             "artist": artistName,
@@ -209,5 +214,7 @@ $(document).ready(function() {
     })
 
     getWiki();
-  });
+
+ 
+
 
