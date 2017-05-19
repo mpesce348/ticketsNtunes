@@ -64,9 +64,7 @@ function getSpotify() {
         method: "GET"
       }).done(function(trackResponse) {
 
-        // Logging the tracks
-        // console.log(trackResponse.tracks[0].name);
-        // console.log(trackResponse.tracks[1].name);
+        
         var trackPanel  = $('#trackData')
         var trackTop3List = $('<ol>')
         for(var i = 0; i < 10; i++){
@@ -79,10 +77,7 @@ function getSpotify() {
         }
 
         trackPanel.append(trackTop3List)
-        // Appending the new player into the HTML
-        // $("#topTrack1").text(JSON.stringify(trackResponse.tracks[0].name));
-        // $("#topTrack2").text(JSON.stringify(trackResponse.tracks[1].name));
-        // $("#topTrack3").text(JSON.stringify(trackResponse.tracks[2].name));
+        
         
       });
     });
