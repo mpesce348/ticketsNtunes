@@ -59,20 +59,26 @@ $(document).ready(function() {
                     method: "GET"
                 }).done(function(trackResponse) {
 
-
+                    //creates var, the value of which will append to the div with id "trackData"
                     var trackPanel = $('#trackData')
+                    //creates a var which will generate an order list 
                     var trackTop3List = $('<ol>')
+                    //begins for loop to cycle though the response data in trackResponse
                     for (var i = 0; i < 10; i++) {
+                        //creates var which will generate a list item 
                         var trackListItem = $('<li>')
+                        //creates var which will generate an h3 tag
                         var trackHeader = $('<h3>')
-                        console.log(trackResponse.tracks[i].name);
+                        //sets the text of the h3 tag as the top track of the track response object
                         trackHeader.text(trackResponse.tracks[i].name)
+                        //appends the "trackHeader" h3 to the "trackListItem" list item
                         trackListItem.append(trackHeader)
+                        //appends the "trackListItem" list item to the "trackTop3List" ordered list
                         trackTop3List.append(trackListItem);
                     }
 
-                    //appends 
-                    trackPanel.append(trackTop3List)
+                    //appends the list trackTop3List to the div with id "trackDta"
+                    trackPanel.append(trackTop3List) 
 
 
                 });
