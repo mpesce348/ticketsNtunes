@@ -36,7 +36,13 @@ $(document).ready(function() {
             // Printing the artist id from the Spotify object to console
             var artistID = response.artists.items[0].id;
 
-            var genre = response.artists.items[0].genres;
+             var images = response.artists.items[0].images[0].url;
+             var images1 = response.artists.items[0].images[1].url;
+             var images2 = response.artists.items[0].images[2].url;
+
+            $("#Image1").attr("src", images);
+            $("#Image2").attr("src", images1);
+            $("#Image3").attr("src", images2);
 
 
 
@@ -111,6 +117,24 @@ $(document).ready(function() {
             //sets the text in the div with id "wikiData" to a stringified version of 
             //the text pulled from the wiki api object
             $("#wikiData").text(JSON.stringify(response.query.pages[4429395].extract));
+
+            //builds additional search query ur; to look seach for images 
+            var queryURL2 = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=" + wiki + "&prop=images=1";
+
+
+
+            $.ajax({
+                url: queryURL2,
+                method: "GET",
+                cors: true,
+                dataType: "jsonp"
+            }).done(function(response) {
+                console.log(response);
+                console.log(response.query.pages);
+                
+
+            })
+
         })
 
     }
