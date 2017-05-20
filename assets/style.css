@@ -58,7 +58,7 @@ html,body{
 .content h1{
     font-family: 
     color:white;
-    text-shadow: 5px 5px 10px blue;
+    text-shadow: 5px 5px 10px red;
     font-size: 450%;
 }
 
@@ -149,6 +149,7 @@ audio{
   color: white;
 }
 
+/*
 .footer {
   position: center;
   bottom: 0;
