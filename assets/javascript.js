@@ -1,6 +1,15 @@
 $(document).ready(function() {
     console.log("ready!");
 
+  console.log('My code should run!');
+        var h1 = $('h1');
+        //simple tween using greensock new library
+        TweenLite.from(h1, 2, {autoAlpha: 0});
+
+
+
+
+
   //initalize firebase
   var config = {
     apiKey: "AIzaSyAoNddLnmtR865blvGJc9ihvUNMwuFwrUE",
@@ -13,6 +22,7 @@ $(document).ready(function() {
   firebase.initializeApp(config);
 
   var database = firebase.database();
+
 
 
 
@@ -36,6 +46,8 @@ function getSpotify() {
       var artistID = response.artists.items[0].id;
 
       var genre =response.artists.items[0].genres;
+
+
 
       
 
@@ -139,3 +151,4 @@ function getSpotify() {
   })
 
 });
+
