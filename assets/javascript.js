@@ -2,6 +2,10 @@
 $(document).ready(function() {
     console.log("ready!");
 
+        var h1 = $('h1');
+        //simple tween using greensock new library
+        TweenLite.from(h1, 2, {autoAlpha: 0});
+
     //initalize firebase
     var config = {
         apiKey: "AIzaSyAoNddLnmtR865blvGJc9ihvUNMwuFwrUE",
@@ -12,7 +16,7 @@ $(document).ready(function() {
         messagingSenderId: "446162477724"
     };
     firebase.initializeApp(config);
-    //sets varibale for databsase 
+    //sets varibale for databsase info
     var database = firebase.database();
 
 
@@ -107,6 +111,8 @@ $(document).ready(function() {
         }).done(function(response) {
             console.log(response);
             console.log(response.query.pages);
+
+            var artistID = 
             
             //sets the text in the div with id "wikiData" to a stringified version of 
             //the text pulled from the wiki api object
