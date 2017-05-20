@@ -36,7 +36,13 @@ $(document).ready(function() {
             // Printing the artist id from the Spotify object to console
             var artistID = response.artists.items[0].id;
 
-            var genre = response.artists.items[0].genres;
+             var images = response.artists.items[0].images[0].url;
+             var images1 = response.artists.items[0].images[1].url;
+             var images2 = response.artists.items[0].images[2].url;
+
+            $("#Image1").attr("src", images);
+            $("#Image2").attr("src", images1);
+            $("#Image3").attr("src", images2);
 
 
 
